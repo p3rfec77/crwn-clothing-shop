@@ -13,7 +13,10 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleWares = [logger];
+// eslint-disable-next-line no-undef
+const middleWares = [process.env.NODE_ENV !== "production" && logger].filter(
+  Boolean
+);
 
 export const store = configureStore({
   reducer: persistedReducer,
